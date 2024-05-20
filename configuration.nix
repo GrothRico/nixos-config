@@ -23,10 +23,6 @@
      networkmanager.enable = true;
      hostName = "nixos";
      wireless.enable = false; # Disables wireless support via wpa_supplicant.
-     # proxy = {
-     #   default = "";
-     #   noProxy = "";
-     # };
    };
  
  
@@ -74,10 +70,8 @@
      };
    };
  
-   environment = {
-     sessionVariables = {
-       TERMINAL = [ "kitty" ];
-     };
+   environment.sessionVariables = {
+     EDITOR = "vim";
    };
  
    # Enable sound with pipewire.
@@ -96,17 +90,6 @@
      isNormalUser = true;
      description = "Rico Groth";
      extraGroups = [ "networkmanager" "wheel" ];
-     packages = with pkgs; [
-       chromium
-       steam
-       discord
-       lua-language-server
-       clang-tools
-       clang
-       stylua
-       cmake-language-server
-       cmake-format
-     ];
    };
  
    systemd.services = {
@@ -118,46 +101,13 @@
    
  
    environment.systemPackages = with pkgs; [
-     xorg.xrandr
-     autorandr
-     neovim
-     nodejs_21
-     wget
-     kitty
-     tmux
+     vim
      tree
-     python312
-     i3
-     i3status
-     git
      home-manager
-     gcc
-     gnumake
-     cmake
-     nasm
-     gdb
-     ripgrep
      htop
      zip
      unzip
-     p7zip
    ];
- 
-   fonts.packages = with pkgs; [
-     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-   ];
- 
-   programs = {
-     neovim = {
-       enable = true;
-       defaultEditor = true;
-     };
-     # TODO: set user name and email using home-manager
-     git = {
-       enable = true;
-       lfs.enable = true;
-     };
-   };
  
    system.stateVersion = "23.11";
 }
